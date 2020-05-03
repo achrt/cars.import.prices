@@ -7,7 +7,7 @@ replicaCount: 1
 mongo_host: "mongo-mongodb"
 
 image:
-  repository: kodixauto/cars.import.rrp
+  repository: achrt/cars.import.rrp
   tag: latest
   pullPolicy: Always
 

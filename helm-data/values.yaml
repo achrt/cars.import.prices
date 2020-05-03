@@ -7,7 +7,7 @@ replicaCount: 2
 mongo_host: "mongo-mongodb-primary-0.mongo-mongodb-headless,mongo-mongodb-secondary-0.mongo-mongodb-headless,mongo-mongodb-secondary-1.mongo-mongodb-headless"
 
 image:
-  repository: kodixauto/cars.import.rrp
+  repository: achrt/cars.import.rrp
   tag: latest
   pullPolicy: Always
 
