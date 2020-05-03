@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cars-import-hooks.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "cars-import-hooks.name" . }}
+    helm.sh/chart: {{ include "cars-import-hooks.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "cars-import-hooks.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
