@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: {{ include "cars-import-prices.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "cars-import-rrp.name" . }}
-    helm.sh/chart: {{ include "cars-import-rrp.chart" . }}
+    app.kubernetes.io/name: {{ include "cars-import-prices.name" . }}
+    helm.sh/chart: {{ include "cars-import-prices.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     platform: nw
@@ -12,12 +12,12 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "cars-import-rrp.name" . }}
+      app.kubernetes.io/name: {{ include "cars-import-prices.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "cars-import-rrp.name" . }}
+        app.kubernetes.io/name: {{ include "cars-import-prices.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
         platform: nw
     spec:
