@@ -33,4 +33,3 @@ func (s *Service) get(path string, logger model.Logger) (*http.Response, error) 
 
 	return client.Do(request)
 }
-package cars_catalog

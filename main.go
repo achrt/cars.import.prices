@@ -4,7 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	// "github.com/gorilla/mux"
+	"github.com/gorilla/mux"
+	"gitlab.kodixauto.ru/nw/logger"
+
+	"cars.import.prices/api"
+	v1 "cars.import.prices/api/v1"
 )
 
 func main() {
@@ -14,7 +18,12 @@ func main() {
 }
 
 func Run(port string) {
-	//r := mux.NewRouter()
-	fmt.Println("PRICES_WAS_CONNECTED")
-	//fmt.Println(r)
+	r := mux.NewRouter()
+	l := logger.New("runtime")
+	v1.Boot(r)
+	s := api.New(r)
+
+	l.Info(fmt.Sprintf("server started on port [%s]", port), nil)
+
+	panic(s.Run(":" + port))
 }
