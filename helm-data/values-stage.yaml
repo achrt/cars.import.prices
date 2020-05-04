@@ -7,7 +7,7 @@ replicaCount: 1
 mongo_host: "mongo-mongodb"
 
 image:
-  repository: achrt/cars.import.rrp
+  repository: achrt/cars.import.prices
   tag: latest
   pullPolicy: Always
 

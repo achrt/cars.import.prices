@@ -1,5 +1,5 @@
 FROM golang:1.12 as build_base
-WORKDIR /go/src/cars.import.rrp
+WORKDIR /go/src/cars.import.prices
 # Force the go compiler to use modules
 ENV GO111MODULE=on
 
@@ -22,7 +22,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflag
 FROM alpine
 EXPOSE 8080
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder /go/src/cars.import.rrp/main /app/
+COPY --from=builder /go/src/cars.import.prices/main /app/
 RUN apk add --no-cache curl
 WORKDIR /app
 CMD ["./main"]
