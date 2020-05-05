@@ -3,7 +3,7 @@ package cars_catalog
 import (
 	"net/http"
 
-	"cars.import.prices/domain/model"
+	"cars.import.prices/domain"
 )
 
 type Service struct {
@@ -20,7 +20,7 @@ func (s *Service) GetUrl(postfix string) string {
 	return "http://" + s.Host + postfix
 }
 
-func (s *Service) get(path string, logger model.Logger) (*http.Response, error) {
+func (s *Service) get(path string, logger domain.Logger) (*http.Response, error) {
 	client := &http.Client{}
 
 	request, err := http.NewRequest("GET", s.GetUrl(path), nil)
