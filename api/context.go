@@ -4,6 +4,7 @@ import (
 	"gitlab.kodixauto.ru/nw/logger"
 
 	"cars.import.prices/domain"
+	"cars.import.prices/services/cars_catalog"
 )
 
 type Context struct {
@@ -30,4 +31,8 @@ func (c *Context) Session() *domain.Session {
 
 func (c *Context) Logger() domain.Logger {
 	return logger.New(c.TraceId)
+}
+
+func (c *Context) Services() domain.CarsCatalog {
+	return cars_catalog.New("8080")
 }
