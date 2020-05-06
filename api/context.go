@@ -34,5 +34,5 @@ func (c *Context) Logger() domain.Logger {
 }
 
 func (c *Context) Services() domain.CarsCatalog {
-	return cars_catalog.New("8080")
+	return cars_catalog.New("cars-cars-catalog:8080")
 }

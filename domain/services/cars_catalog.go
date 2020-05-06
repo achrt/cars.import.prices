@@ -47,3 +47,18 @@ type Relation struct {
 	Id   string `json:"id"`
 	Type string `json:"type"`
 }
+
+type PricesResponse struct {
+	Data *PriceStatuses      `json:"data"`
+	Meta *PricesResponseMeta `json:"meta"`
+}
+
+type PriceStatuses struct {
+	Published *Price   `json:"published"`
+	Submitted *Price   `json:"submitted"`
+	Draft     []*Price `json:"draft"`
+}
+
+type PricesResponseMeta struct {
+	Total int `json:"total"`
+}

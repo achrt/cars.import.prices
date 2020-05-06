@@ -17,11 +17,13 @@ type Response struct {
 }
 
 func Run(c domain.Context, req *Request) (*Response, error) {
-	k, err := c.Services().GetPricesByMarkId(req.CarHook.MarketingComplectationID, c.Logger())
+	prices, err := c.Services().GetPricesByMarkId(req.CarHook.MarketingComplectationID, c.Logger())
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(k)
-	req.CarHook.Price *= 2
+
+	fmt.Println(prices)
+
+	req.CarHook.Price = 0
 	return &Response{req.CarHook}, nil
 }
