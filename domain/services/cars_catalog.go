@@ -47,3 +47,11 @@ type Relation struct {
 	Id   string `json:"id"`
 	Type string `json:"type"`
 }
+
+type Services interface {
+	CarsCatalog() CarsCatalog
+}
+
+type CarsCatalog interface {
+	GetPricesByMarkId(markId string) (*Price, error)
+}
