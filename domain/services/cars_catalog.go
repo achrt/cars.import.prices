@@ -62,3 +62,7 @@ type PriceStatuses struct {
 type PricesResponseMeta struct {
 	Total int `json:"total"`
 }
+
+type PriceTypeResponse struct {
+	Data *PriceType `json:"data"`
+}
