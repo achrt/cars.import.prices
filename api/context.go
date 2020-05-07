@@ -14,6 +14,7 @@ type Context struct {
 	InternalRequest string
 	Vars            map[string]string
 	Body            []byte
+	services        *domain.CarsCatalog
 }
 
 type Application struct {
