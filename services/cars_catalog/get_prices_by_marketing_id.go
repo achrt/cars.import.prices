@@ -11,12 +11,8 @@ import (
 	"cars.import.prices/domain/services"
 )
 
-type GetPricesByMarkIdResponse struct {
-	Data *services.Price
-}
-
 func (s *Service) GetPricesByMarkId(markId string, logger domain.Logger) (*services.Price, error) {
-	r, err := s.get(fmt.Sprintf("/api/v1//marketing_complectations/%s/prices", markId), logger)
+	r, err := s.get(fmt.Sprintf("/api/v1/marketing_complectations/%s/prices", markId), logger)
 
 	if err != nil {
 		return nil, err
@@ -30,14 +26,14 @@ func (s *Service) GetPricesByMarkId(markId string, logger domain.Logger) (*servi
 	}
 
 	if r.StatusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("invalid cars.catalog response status (GetUpholsteryByCode). Body: %s", string(bytes)))
+		return nil, errors.New(fmt.Sprintf("invalid cars.catalog response status (GetPricesByMarkId). Body: %s", string(bytes)))
 	}
 
-	response := GetPricesByMarkIdResponse{}
+	response := services.PricesResponse{}
 	err = json.Unmarshal(bytes, &response)
 
 	if err != nil {
 		return nil, err
 	}
-	return response.Data, nil
+	return response.Data.Published, nil
 }

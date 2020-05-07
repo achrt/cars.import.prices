@@ -8,12 +8,18 @@ import (
 
 type Service struct {
 	Host string
+	ctx  domain.Context
 }
 
 func New(host string) *Service {
 	return &Service{
 		Host: host,
 	}
+}
+
+func (s *Service) WithContext(ctx domain.Context) *Service {
+	s.ctx = ctx
+	return s
 }
 
 func (s *Service) GetUrl(postfix string) string {

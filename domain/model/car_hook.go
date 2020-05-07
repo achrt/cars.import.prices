@@ -13,4 +13,5 @@ type CarHook struct {
 	MarketingComplectationID string
 	BodyColorID              string
 	RestylingID              string
+	IsNew                    bool
 }

@@ -24,6 +24,7 @@ type CarHookAttributes struct {
 	MarketingComplectationID string   `json:"marketing_complectation_id"`
 	RestylingID              string   `json:"restyling_id"`
 	BodyColorID              string   `json:"body_color_id"`
+	IsNew                    bool     `json:"is_new"`
 }
 
 type CarHookResponse struct {
@@ -47,6 +48,7 @@ func MarshalCarHook(carHook *model.CarHook) *CarHookResponse {
 				MarketingComplectationID: carHook.MarketingComplectationID,
 				RestylingID:              carHook.RestylingID,
 				BodyColorID:              carHook.BodyColorID,
+				IsNew:                    carHook.IsNew,
 			},
 		},
 	}
@@ -73,5 +75,6 @@ func (carHook *CarHook) Model() *model.CarHook {
 		MarketingComplectationID: carHook.Attributes.MarketingComplectationID,
 		RestylingID:              carHook.Attributes.RestylingID,
 		BodyColorID:              carHook.Attributes.BodyColorID,
+		IsNew:                    carHook.Attributes.IsNew,
 	}
 }
