@@ -22,7 +22,10 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 		return nil, err
 	}
 
-	fmt.Println(prices)
+	if prices != nil {
+		fmt.Println(prices.Attributes.Values)
+		fmt.Println(prices.Attributes.Status)
+	}
 
 	req.CarHook.Price = 0
 	return &Response{req.CarHook}, nil
