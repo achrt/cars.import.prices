@@ -7,6 +7,7 @@ import (
 	"cars.import.prices/domain/model"
 
 	"cars.import.prices/domain"
+	"cars.import.prices/helpers"
 )
 
 type Request struct {
@@ -24,7 +25,7 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 	}
 
 	if req.CarHook.MarketingComplectationID == "" {
-		return nil, errors.New("Marketing complectation code should not be empty")
+		return nil, helpers.EmptyMarkCode()
 	}
 
 	prices, err := c.Services().GetPricesByMarkId(req.CarHook.MarketingComplectationID, c.Logger())
@@ -33,7 +34,7 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 	}
 
 	if prices == nil {
-		return nil, errors.New(fmt.Sprintf("Can not find prices for makreting complectation code %s.", req.CarHook.MarketingComplectationID))
+		return nil, helpers.PriceOfMarkCodeNotFound(req.CarHook.MarketingComplectationID)
 	}
 
 	pt := "price_retail"
@@ -44,7 +45,7 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 	}
 
 	if priceType == nil {
-		return nil, errors.New(fmt.Sprintf("Can not find price type by code %s.", pt))
+		return nil, helpers.PriceTypeNotFound(pt)
 	}
 
 	retail := 0
