@@ -8,7 +8,6 @@ import (
 
 type Service struct {
 	Host string
-	ctx  domain.Context
 }
 
 func New(host string) *Service {
@@ -17,8 +16,7 @@ func New(host string) *Service {
 	}
 }
 
-func (s *Service) WithContext(ctx domain.Context) *Service {
-	s.ctx = ctx
+func (s *Service) WithContext() *Service {
 	return s
 }
 

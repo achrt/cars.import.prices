@@ -5,7 +5,11 @@ import "cars.import.prices/domain/services"
 type Context interface {
 	Session() *Session
 	Logger() Logger
-	Services() CarsCatalog
+	Services() Services
+}
+
+type Services interface {
+	CarsCatalog() CarsCatalog
 }
 
 type CarsCatalog interface {

@@ -28,7 +28,7 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 		return nil, helpers.EmptyMarkCode()
 	}
 
-	prices, err := c.Services().GetPricesByMarkId(req.CarHook.MarketingComplectationID, c.Logger())
+	prices, err := c.Services().CarsCatalog().GetPricesByMarkId(req.CarHook.MarketingComplectationID, c.Logger())
 	if err != nil {
 		return nil, err
 	}
@@ -38,7 +38,7 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 	}
 
 	pt := "price_retail"
-	priceType, err := c.Services().GetPriceTypeByCode(pt, c.Logger())
+	priceType, err := c.Services().CarsCatalog().GetPriceTypeByCode(pt, c.Logger())
 
 	if err != nil {
 		return nil, err
