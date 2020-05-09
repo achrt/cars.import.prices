@@ -3,6 +3,7 @@ package replace_price
 import (
 	"errors"
 	"fmt"
+	"strconv"
 
 	"cars.import.prices/domain/model"
 
@@ -24,8 +25,8 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 		return &Response{req.CarHook}, nil
 	}
 
-	if req.CarHook.MarketingComplectationID == "" {
-		return nil, helpers.EmptyMarkCode()
+	if req.CarHook.MarketingComplectationID == "" || req.CarHook.BodyColorID == "" || req.CarHook.RestylingID == "" {
+		return nil, helpers.EmptyData()
 	}
 
 	prices, err := c.Services().CarsCatalog().GetPricesByMarkId(req.CarHook.MarketingComplectationID, c.Logger())
@@ -60,6 +61,20 @@ func Run(c domain.Context, req *Request) (*Response, error) {
 		return nil, errors.New(fmt.Sprintf("Can not find price typed of %s for makreting complectation code %s.", pt, req.CarHook.MarketingComplectationID))
 	}
 
-	req.CarHook.Price = retail
+	if _, ok := helpers.ColorPrices[req.CarHook.RestylingID]; !ok {
+		return nil, helpers.RestylingColorsNotFound(req.CarHook.RestylingID)
+	}
+
+	if _, ok := helpers.ColorPrices[req.CarHook.RestylingID][req.CarHook.BodyColorID]; !ok {
+		return nil, helpers.ColorPriceNotFound(req.CarHook.RestylingID, req.CarHook.BodyColorID)
+	}
+
+	colorPrice, err := strconv.Atoi(helpers.ColorPrices[req.CarHook.RestylingID][req.CarHook.BodyColorID]["price"])
+
+	if err != nil {
+		return nil, err
+	}
+
+	req.CarHook.Price = retail + colorPrice
 	return &Response{req.CarHook}, nil
 }

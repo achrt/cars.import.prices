@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-func EmptyMarkCode() error {
-	return errors.New("Marketing complectation code should not be empty")
+func EmptyData() error {
+	return errors.New("Marketing complectation code, restyling and color ids should not be empty")
 }
 
 func PriceOfMarkCodeNotFound(code string) error {
@@ -14,5 +14,13 @@ func PriceOfMarkCodeNotFound(code string) error {
 }
 
 func PriceTypeNotFound(pt string) error {
-	return errors.New(fmt.Sprintf("Can not find price type by code %s.", pt))
+	return errors.New(fmt.Sprintf("Can not find a price type by the code %s.", pt))
+}
+
+func RestylingColorsNotFound(r string) error {
+	return errors.New(fmt.Sprintf("Can not find colors for the restyling id %s.", r))
+}
+
+func ColorPriceNotFound(r, c string) error {
+	return errors.New(fmt.Sprintf("Can not find color price for the restyling id %s and color %s", r, c))
 }
