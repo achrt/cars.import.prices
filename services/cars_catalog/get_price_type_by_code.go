@@ -6,13 +6,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 
 	"cars.import.prices/domain"
 	"cars.import.prices/domain/services"
 )
 
-func (s *Service) GetPriceTypeByCode(code string, logger domain.Logger) (*services.PriceType, error) {
-	r, err := s.get(fmt.Sprintf("/api/v1/price_types/by/code/%s", code), logger)
+func (s *Service) GetPriceTypeByCode(code []string, logger domain.Logger) ([]*services.PriceType, error) {
+	codes := strings.Join(code, ",")
+	r, err := s.get(fmt.Sprintf("/api/v1/price_types/by/code?code=%s", codes), logger)
 
 	if err != nil {
 		return nil, err

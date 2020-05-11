@@ -14,7 +14,7 @@ type Services interface {
 
 type CarsCatalog interface {
 	GetPricesByMarkId(markId string, logger Logger) (*services.Price, error)
-	GetPriceTypeByCode(code string, logger Logger) (*services.PriceType, error)
+	GetPriceTypeByCode(code []string, logger Logger) ([]*services.PriceType, error)
 }
 
 type CarsCatalogStruct struct {
