@@ -11,4 +11,5 @@ func Boot(router *mux.Router) {
 	w := Wrapper()
 
 	r.HandleFunc("/hooks/car/retail_price", w(ReplacePrice)).Methods(http.MethodPost)
+	r.HandleFunc("/hooks/car/filter_by_year/{year_from}", w(FilterByYear)).Methods(http.MethodPost)
 }

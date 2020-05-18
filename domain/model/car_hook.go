@@ -14,4 +14,5 @@ type CarHook struct {
 	BodyColorID              string
 	RestylingID              string
 	IsNew                    bool
+	Year                     int
 }

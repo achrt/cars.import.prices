@@ -25,6 +25,7 @@ type CarHookAttributes struct {
 	RestylingID              string   `json:"restyling_id"`
 	BodyColorID              string   `json:"body_color_id"`
 	IsNew                    bool     `json:"is_new"`
+	Year                     int      `json:"year"`
 }
 
 type CarHookResponse struct {
@@ -49,6 +50,7 @@ func MarshalCarHook(carHook *model.CarHook) *CarHookResponse {
 				RestylingID:              carHook.RestylingID,
 				BodyColorID:              carHook.BodyColorID,
 				IsNew:                    carHook.IsNew,
+				Year:                     carHook.Year,
 			},
 		},
 	}
@@ -76,5 +78,6 @@ func (carHook *CarHook) Model() *model.CarHook {
 		RestylingID:              carHook.Attributes.RestylingID,
 		BodyColorID:              carHook.Attributes.BodyColorID,
 		IsNew:                    carHook.Attributes.IsNew,
+		Year:                     carHook.Attributes.Year,
 	}
 }
