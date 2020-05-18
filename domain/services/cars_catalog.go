@@ -64,5 +64,5 @@ type PricesResponseMeta struct {
 }
 
 type PriceTypeResponse struct {
-	Data *PriceType `json:"data"`
+	Data []*PriceType `json:"data"`
 }

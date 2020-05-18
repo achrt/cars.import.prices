@@ -4,6 +4,7 @@ import (
 	"gitlab.kodixauto.ru/nw/logger"
 
 	"cars.import.prices/domain"
+	"cars.import.prices/services"
 	"cars.import.prices/services/cars_catalog"
 )
 
@@ -14,7 +15,7 @@ type Context struct {
 	InternalRequest string
 	Vars            map[string]string
 	Body            []byte
-	services        *domain.CarsCatalog
+	services        *domain.Services
 }
 
 type Application struct {
@@ -34,6 +35,8 @@ func (c *Context) Logger() domain.Logger {
 	return logger.New(c.TraceId)
 }
 
-func (c *Context) Services() domain.CarsCatalog {
-	return cars_catalog.New("cars-cars-catalog:8080")
+func (c *Context) Services() domain.Services {
+	return &services.Services{
+		CarsCatalogService: cars_catalog.New("cars-cars-catalog:8080"),
+	}
 }
